@@ -1,4 +1,5 @@
 const express = require('express');
+const PORT = process.env.PORT;
 const connectDB = require('./src/config/db');
 connectDB();
 const app = express();
@@ -11,6 +12,6 @@ app.use(cors());
 app.use('/task', TaskRoutes);
 
 
-app.listen(5000, ()=>{
+app.listen(PORT, ()=>{
     console.log('Express Server is running on port 5000');
 })
