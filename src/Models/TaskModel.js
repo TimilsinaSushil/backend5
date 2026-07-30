@@ -4,7 +4,7 @@ const TaskSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            required: [true,'Please provide the title'],
+            required: [true, 'Please provide the title'],
             trim: true,
             maxlength: 100
         },
@@ -16,13 +16,19 @@ const TaskSchema = new mongoose.Schema(
         },
         priority: {
             type: String,
-            enum: ['low','medium','high'],
+            enum: ['low', 'medium', 'high'],
             default: 'medium'
         },
         completed: {
             type: Boolean,
             default: false
         },
+        // Link to the User model
+        user_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: [true, 'Please provide the user']
+        }
 
     },
     {
