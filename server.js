@@ -7,6 +7,8 @@ const app = express();
 const TaskRoutes = require('./src/Routes/TaskRoutes');
 const AuthRoutes = require('./src/Routes/AuthRoutes')
 const VerifyToken = require('./src/Middlewares/VerifyToken')
+const passport = require('passport');
+require('./src/config/passport');
 app.use(express.json());
 
 const cors = require('cors');
