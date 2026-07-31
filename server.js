@@ -13,6 +13,7 @@ app.use(express.json());
 
 const cors = require('cors');
 app.use(cors());
+app.use(passport.initialize())
 
 app.use('/task', VerifyToken, TaskRoutes);
 app.use('/auth', AuthRoutes);
