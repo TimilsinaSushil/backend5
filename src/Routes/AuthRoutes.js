@@ -3,11 +3,13 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const AuthController = require('../Controller/AuthController');
 const passport = require('passport');
+const validate = require('../Middlewares/Validate')
+const { registerRules } = require('../Validations/AuthRules')
 require('dotenv').config();
 const frontend_url = process.env.FRONTEND_URL;
 
 // Register route
-router.post('/register', AuthController.registerUser);
+router.post('/register', registerRules, validate, AuthController.registerUser);
 
 // Login route
 router.post('/login', AuthController.loginUser);
@@ -21,7 +23,7 @@ router.get(
         // Successful authentication, generate JWT and send it to the client
         const token = jwt.sign(
             { id: req.user._id, email: req.user.email, role: req.user.role },
-            process.env.JWT_SECRET,  
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
         const user = {
